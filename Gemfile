@@ -34,6 +34,7 @@ gem 'devise'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'carrierwave'
+gem 'nested_form_fields'
 
 
 group :development, :test do

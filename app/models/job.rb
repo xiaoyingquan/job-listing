@@ -7,6 +7,9 @@ class Job < ApplicationRecord
   scope :recent, -> { order('created_at DESC') }
   has_many :resumes
 
+  has_many :messages, :dependent => :destroy, :inverse_of => :job
+  accepts_nested_attributes_for :messages, :allow_destroy => true, :reject_if => :all_blank
+
   def publish!
     self.is_hidden = false
     self.save

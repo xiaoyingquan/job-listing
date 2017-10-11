@@ -14,6 +14,7 @@ class Admin::JobsController < ApplicationController
 
   def new
     @job = Job.new
+    @job.messages.build
   end
 
   def create
@@ -28,6 +29,7 @@ class Admin::JobsController < ApplicationController
 
   def edit
     @job = Job.find(params[:id])
+    @job.messages.build if @job.messages.empty?
   end
 
   def update
@@ -65,6 +67,6 @@ class Admin::JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:title, :description, :wage_upper_bound, :wage_lower_bound, :contact_email, :is_hidden)
+    params.require(:job).permit(:title, :description, :wage_upper_bound, :wage_lower_bound, :contact_email, :is_hidden, :messages_attributes => [:id, :name, :description, :_destroy])
   end
 end
